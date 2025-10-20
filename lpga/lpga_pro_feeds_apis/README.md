@@ -22,12 +22,6 @@ SUPABASE_KEY=your_supabase_key
 uvicorn main:app --reload
 ```
 
-## Authentication
-All endpoints require an bearer token in the header:
-```
-Authorization: Bearer <BEARER_TOKEN>
-```
-
 ## Available Endpoints
 
 - GET `/lpga/tournaments` — List tournaments (optional year filter, pagination)
@@ -79,7 +73,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/lpga/tournaments?page=1&page_size=20&year=2025"
+curl "http://localhost:8000/lpga/tournaments?page=1&page_size=20&year=2025"
 ```
 
 #### . GET /lpga/tournaments/{tournament_id}
@@ -87,7 +81,7 @@ Response: single tournament object (same shape as in list).
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/lpga/tournaments/CAOP-2025"
+curl "http://localhost:8000/lpga/tournaments/CAOP-2025"
 ```
 
 #### . GET /lpga/tournaments/{tournament_id}/leaderboard
@@ -132,7 +126,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/lpga/tournaments/NWRK-2025/leaderboard?page=1&page_size=50"
+curl "http://localhost:8000/lpga/tournaments/NWRK-2025/leaderboard?page=1&page_size=50"
 ```
 
 #### . GET /lpga/players
@@ -165,7 +159,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/lpga/players?page=1&page_size=20"
+curl "http://localhost:8000/lpga/players?page=1&page_size=20"
 ```
 
 #### . GET /lpga/players/{player_id}/profile
@@ -211,7 +205,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/lpga/players/46046/profile"
+curl "http://localhost:8000/lpga/players/46046/profile"
 ```
 
 

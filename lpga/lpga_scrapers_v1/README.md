@@ -24,11 +24,6 @@ SUPABASE_KEY=your_supabase_key
 
 ## API Endpoints
 
-### Authentication
-All endpoints require an bearer token in the header:
-```
-Authorization: Bearer <BEARER_TOKEN>
-```
 
 ### Available Endpoints
 
