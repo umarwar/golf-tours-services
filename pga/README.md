@@ -37,18 +37,6 @@ Supabase-backed scrapers with lightweight wrapper APIs.
 - Persists to Supabase DB
 - Includes simple wrapper APIs for quick access
 
-#### Database Schema (v2)
-Supabase tables populated by v2 scrapers:
-
-- `pga_tournaments` - Tournament information
-- `pga_tournament_leaderboards` - Player leaderboard data
-- `pga_players` - Player profiles and statistics
-- `pga_course_stats` - Course hole-by-hole statistics
-
-**Run API:**
-   ```bash
-   uvicorn main:app --reload
-   ```
 
 ### 📁 pro_feeds_apis
 FastAPI wrapper that provides REST endpoints to access the scraped PGA Tour data.

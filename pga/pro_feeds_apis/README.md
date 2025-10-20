@@ -22,12 +22,6 @@ SUPABASE_KEY=your_supabase_key
 uvicorn main:app --reload
 ```
 
-## Authentication
-All endpoints require an bearer token in the header:
-``` 
-Authorization: Bearer <BEARER_TOKEN>
-```
-
 ## Available Endpoints
 
 - GET `/pga/tournaments` — List tournaments (optional status filter, pagination)
@@ -80,7 +74,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/tournaments?page=1&page_size=20"
+curl "http://localhost:8000/pga/tournaments?page=1&page_size=20"
 ```
 
 #### . GET /pga/tournaments/{tournament_id}
@@ -88,7 +82,7 @@ Response: single tournament object (same shape as in list).
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/tournaments/R2025464"
+curl "http://localhost:8000/pga/tournaments/R2025464"
 ```
 
 #### . GET /pga/tournaments/{tournament_id}/leaderboard
@@ -135,7 +129,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/tournaments/R2025464/leaderboard?page=1&page_size=50"
+curl "http://localhost:8000/pga/tournaments/R2025464/leaderboard?page=1&page_size=50"
 ```
 
 #### . GET /pga/tournaments/{tournament_id}/hole-statistics
@@ -184,7 +178,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/tournaments/R2025464/hole-statistics"
+curl "http://localhost:8000/pga/tournaments/R2025464/hole-statistics"
 ```
 
 
@@ -224,7 +218,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/players?page=1&page_size=20"
+curl "http://localhost:8000/pga/players?page=1&page_size=20"
 ```
 
 
@@ -265,7 +259,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/pga/players/46046/profile"
+curl "http://localhost:8000/pga/players/46046/profile"
 ```
 
 ### For GCP deployment 
