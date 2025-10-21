@@ -24,11 +24,12 @@ uvicorn main:app --reload
 
 ## Available Endpoints
 
-- GET `/lpga/tournaments` — List tournaments (optional year filter, pagination)
+- GET `/lpga/tournaments` — List tournaments (year filter, optional status filter, pagination)
 - GET `/lpga/tournaments/{tournament_id}` — Get a tournament by id
 - GET `/lpga/tournaments/{tournament_id}/leaderboard` — Get leaderboard rows (pagination)
 - GET `/lpga/players` — List players (pagination)
 - GET `/lpga/players/{player_id}/profile` — Get a player's profile with stats and tournaments
+- GET `/lpga/tickets` — Get ticket URLs for upcoming tournaments
 
 ---
 
@@ -36,7 +37,8 @@ uvicorn main:app --reload
 
 #### . GET /lpga/tournaments
 Query params:
-- `year` (optional): e.g. `2025`
+- `year` (required): Tournament year (e.g., 2025)
+- `status` (optional): `UPCOMING | COMPLETED`
 - `page` (default 1)
 - `page_size` (default 20, max 200)
 
@@ -208,4 +210,36 @@ Example:
 curl "http://localhost:8000/lpga/players/46046/profile"
 ```
 
+
+#### . GET /lpga/tickets
+Get ticket URLs for upcoming tournaments only.
+
+Query params:
+- `year` (required): Tournament year (e.g., 2025)
+- `page` (default 1)
+- `page_size` (default 20, max 200)
+
+Response:
+```json
+{
+  "tickets": [
+    {
+      "tournament_id": "CAOP-2025",
+      "tournament_name": "CPKC Women's Open",
+      "year": 2025,
+      "start_date": "2025-08-21",
+      "end_date": "2025-08-24",
+      "ticket_url": "https://tickets.example.com"
+    }
+  ],
+  "page": 1,
+  "page_size": 20,
+  "has_more": true
+}
+```
+
+Example:
+```bash
+curl "http://localhost:8000/lpga/tickets?year=2025&page=1&page_size=20"
+```
 
