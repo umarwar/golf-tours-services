@@ -63,7 +63,7 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/livgolf/tournaments?year=2025&status=UPCOMING&page=1&page_size=20"
+curl "http://localhost:8000/livgolf/tournaments?year=2025&status=UPCOMING&page=1&page_size=20"
 ```
 
 #### . GET /livgolf/tournaments/{tournament_id}
@@ -71,7 +71,7 @@ Response: single tournament object (same shape as in list).
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/livgolf/tournaments/18e84cc9-d2f3-4de1-a0cd-956c92073cf1"
+curl "http://localhost:8000/livgolf/tournaments/18e84cc9-d2f3-4de1-a0cd-956c92073cf1"
 ```
 
 #### . GET /livgolf/tickets
@@ -103,5 +103,5 @@ Response:
 
 Example:
 ```bash
-curl -H "Authorization: Bearer $BEARER_TOKEN" "http://localhost:8000/livgolf/tickets?year=2025&page=1&page_size=20"
+curl "http://localhost:8000/livgolf/tickets?year=2025&page=1&page_size=20"
 ```
