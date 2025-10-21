@@ -24,12 +24,13 @@ uvicorn main:app --reload
 
 ## Available Endpoints
 
-- GET `/pga/tournaments` — List tournaments (optional status filter, pagination)
+- GET `/pga/tournaments` — List tournaments (year filter, optional status filter, pagination)
 - GET `/pga/tournaments/{tournament_id}` — Get a tournament by id
 - GET `/pga/tournaments/{tournament_id}/leaderboard` — Get leaderboard rows (pagination)
 - GET `/pga/tournaments/{tournament_id}/hole-statistics` — Get hole-by-hole course stats
 - GET `/pga/players` — List players (pagination)
 - GET `/pga/players/{player_id}/profile` — Get a player's profile
+- GET `/pga/tickets` — Get ticket URLs for upcoming tournaments
 
 ---
 
@@ -37,6 +38,7 @@ uvicorn main:app --reload
 
 #### . GET /pga/tournaments
 Query params:
+- `year` (required): Tournament year (e.g., 2025)
 - `status` (optional): `UPCOMING | COMPLETED | IN_PROGRESS`
 - `page` (default 1)
 - `page_size` (default 20, max 200)
@@ -260,6 +262,38 @@ Response:
 Example:
 ```bash
 curl "http://localhost:8000/pga/players/46046/profile"
+```
+
+#### . GET /pga/tickets
+Get ticket URLs for upcoming tournaments only.
+
+Query params:
+- `year` (required): Tournament year (e.g., 2025)
+- `page` (default 1)
+- `page_size` (default 20, max 200)
+
+Response:
+```json
+{
+  "tickets": [
+    {
+      "tournament_id": "R2025464",
+      "tournament_name": "Procore Championship",
+      "year": 2025,
+      "start_date": "2025-09-11",
+      "end_date": "2025-09-14",
+      "ticket_url": "https://am.ticketmaster.com/pganapa"
+    }
+  ],
+  "page": 1,
+  "page_size": 20,
+  "has_more": true
+}
+```
+
+Example:
+```bash
+curl "http://localhost:8000/pga/tickets?year=2025&page=1&page_size=20"
 ```
 
 ### For GCP deployment 

@@ -157,3 +157,19 @@ class PlayersResponse(BaseModel):
     page: int
     page_size: int
     has_more: bool
+
+
+class TicketUrlItem(BaseModel):
+    tournament_id: str
+    tournament_name: str
+    year: Optional[int] = None
+    start_date: Optional[str] = None
+    end_date: Optional[str] = None
+    ticket_url: Optional[str] = None
+
+
+class TicketUrlResponse(BaseModel):
+    tickets: List[TicketUrlItem]
+    page: int
+    page_size: int
+    has_more: bool

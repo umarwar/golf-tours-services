@@ -17,8 +17,14 @@ from models import (
     PlayerStatistics,
     PlayersResponse,
     PlayerListItem,
+    TicketUrlResponse,
+    TicketUrlItem,
 )
-from services.tournaments import fetch_tournaments, fetch_tournament_by_id
+from services.tournaments import (
+    fetch_tournaments,
+    fetch_tournament_by_id,
+    fetch_upcoming_ticket_urls,
+)
 from services.leaderboards import (
     fetch_leaderboard_rows,
     fetch_tournament_header,
@@ -33,6 +39,7 @@ app = FastAPI(title="PGA Tour Feeds API", version="1.0.0")
 # List tournaments
 @app.get("/pga/tournaments", response_model=TournamentsResponse)
 async def list_tournaments(
+    year: int = Query(description="Tournament year (e.g., 2025)"),
     status_filter: Optional[str] = Query(
         default=None, alias="status", description="UPCOMING|COMPLETED|IN_PROGRESS"
     ),
@@ -41,7 +48,7 @@ async def list_tournaments(
     # _: None = Depends(authorize_request),
 ):
     sb = get_supabase_client()
-    rows, total = fetch_tournaments(sb, status_filter, page, page_size)
+    rows, total = fetch_tournaments(sb, year, status_filter, page, page_size)
 
     tournaments: List[TournamentOut] = []
     for r in rows:
@@ -314,4 +321,39 @@ async def get_player_profile(player_id: int):
         ),
         image_url=r.get("image_url"),
         statistics=stats,
+    )
+
+
+# Get ticket URLs for upcoming tournaments
+@app.get("/pga/tickets", response_model=TicketUrlResponse)
+async def get_ticket_urls(
+    year: int = Query(description="Tournament year (e.g., 2025)"),
+    page: int = Query(default=1, ge=1),
+    page_size: int = Query(default=20, ge=1, le=200),
+    # _: None = Depends(authorize_request),
+):
+    sb = get_supabase_client()
+    rows, total = fetch_upcoming_ticket_urls(sb, year, page, page_size)
+
+    ticket_urls: List[TicketUrlItem] = []
+    for r in rows:
+        ticket_urls.append(
+            TicketUrlItem(
+                tournament_id=r.get("tournament_id"),
+                tournament_name=r.get("tournament_name", ""),
+                year=(int(r["year"]) if r.get("year") is not None else None),
+                start_date=(r.get("start_date") or None),
+                end_date=(r.get("end_date") or None),
+                ticket_url=r.get("ticket_url"),
+            )
+        )
+
+    # Determine has_more
+    if total is not None:
+        has_more = (page * page_size) < total
+    else:
+        has_more = len(rows) == page_size
+
+    return TicketUrlResponse(
+        tickets=ticket_urls, page=page, page_size=page_size, has_more=has_more
     )
