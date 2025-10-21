@@ -11,6 +11,12 @@ myenv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+## Add .env file
+```bash
+SUPABASE_URL=your_supabase_url
+SUPABASE_KEY=your_supabase_key
+```
+
 ## Run
 ```bash
 uvicorn main:app --reload
