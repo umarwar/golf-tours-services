@@ -133,6 +133,7 @@ class PgatourLeaderboardSpider(scrapy.Spider):
                     first_name = player.get("firstName", "")
                     last_name = player.get("lastName", "")
                     player_name = player.get("displayName", "")
+                    country_flag = player.get("countryFlag", "")
                     leaderboard_sort_order = p.get("leaderboardSortOrder")
                     if not player_id:
                         continue
@@ -187,6 +188,7 @@ class PgatourLeaderboardSpider(scrapy.Spider):
                         "projected": projected,
                         "starting": starting,
                         "country": country,
+                        "country_flag": country_flag,
                         "player_url": player_url,
                     }
 

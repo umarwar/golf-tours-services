@@ -145,6 +145,7 @@ class PgatourUpcomingSpider(scrapy.Spider):
                     tournament_id = tournament.get("tournamentId", "")
                     status = tournament.get("status", "")
                     year_value = tournament.get("year", None)
+                    month = tournament.get("month", None)
 
                     try:
                         year_int = int(year_value) if year_value is not None else None
@@ -176,6 +177,9 @@ class PgatourUpcomingSpider(scrapy.Spider):
                     # Extract or construct tournament URL
                     tournament_url = f"https://www.pgatour.com/tournaments/{year_int}/{slugify(tournament_name)}/{tournament_id}"
 
+                    # Build tournament logo URL
+                    tournament_logo = self._build_logo_url(tournament_id)
+
                     self.logger.info(
                         f"Extracted tournament: {tournament_name} - Status: {status} - URL: {tournament_url}"
                     )
@@ -187,6 +191,7 @@ class PgatourUpcomingSpider(scrapy.Spider):
                         "tournament_id": tournament_id,
                         "tournament_name": tournament_name,
                         "year": year_int,
+                        "month": month,
                         "start_date": start_date_str,
                         "end_date": end_date_str,
                         "course_name": course,
@@ -201,6 +206,7 @@ class PgatourUpcomingSpider(scrapy.Spider):
                         "tournament_url": tournament_url,
                         "ticket_url": ticket_url,
                         "status": status,
+                        "tournament_logo": tournament_logo,
                     }
 
                     # Buffer and flush in batches
@@ -281,6 +287,29 @@ class PgatourUpcomingSpider(scrapy.Spider):
             self.logger.warning(f"Failed to parse date range '{date_text}': {e}")
 
         return None, None
+
+    def _build_logo_url(self, tournament_id: str) -> str:
+        """
+        Build tournament logo URL from tournament ID.
+        Example: R2025554 -> https://res.cloudinary.com/pgatour-prod/d_tournaments:logos:R000.png/tournaments/logos/R554.png
+        """
+        if not tournament_id:
+            return ""
+
+        try:
+            tournament_code = tournament_id.replace("R2025", "R")
+
+            # Build the Cloudinary URL
+            base_url = "https://res.cloudinary.com/pgatour-prod"
+            fallback = "d_tournaments:logos:R000.png"
+            logo_path = f"tournaments/logos/{tournament_code}"
+
+            return f"{base_url}/{fallback}/{logo_path}.png"
+        except Exception as e:
+            self.logger.warning(
+                f"Failed to build logo URL for tournament {tournament_id}: {e}"
+            )
+            return ""
 
     def _flush_batch(self):
         if not getattr(self, "supabase", None):

@@ -114,6 +114,7 @@ class PgatourPlayerDetailSpider(scrapy.Spider):
             last_name_val = player_data.get("lastName", None)
             player_id = player_data.get("id", "-")
             country = player_data.get("country", "-")
+            country_flag = player_data.get("countryFlag", "-")
             age = player_bio.get("age", "-")
             birthday = player_bio.get(
                 "bornAccessibilityText", player_bio.get("born", "-")
@@ -215,6 +216,7 @@ class PgatourPlayerDetailSpider(scrapy.Spider):
                 "age": to_int_or_none(age),
                 "birthday": str(birthday) if birthday != "-" else None,
                 "country": country if country != "-" else None,
+                "country_flag": country_flag if country_flag != "-" else None,
                 "birth_place": birth_place,
                 "college": college if college != "-" else None,
                 "residence": residence_txt,
