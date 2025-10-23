@@ -94,6 +94,10 @@ class LpgatourUpcomingSpiderSpider(scrapy.Spider):
                     tournament_url = (
                         f"https://www.lpga.com{link_href}" if link_href else None
                     )
+                    logo_url = (t.get("logo") or {}).get("url") or None
+                    tournament_logo = (
+                        f"https://www.lpga.com{logo_url}" if logo_url else None
+                    )
                     leaderboard_results_url = (
                         f"https://www.lpga.com/-/tournaments/results?code={tournament_code}&year={year_int}"
                         if tournament_code and year_int
@@ -125,6 +129,7 @@ class LpgatourUpcomingSpiderSpider(scrapy.Spider):
                         "is_complete": is_complete,
                         "tournament_url": tournament_url,
                         "leaderboard_results_url": leaderboard_results_url,
+                        "tournament_logo": tournament_logo,
                     }
 
                     self._batch.append(row)

@@ -124,6 +124,7 @@ class LpgatourPlayerProfileSpider(scrapy.Spider):
             "rookie_year": self._to_int(context_item.get("rookieYear")),
             "year_joined": self._to_int(context_item.get("yearJoined")),
             "country": context_item.get("country") or None,
+            "country_flag": context_item.get("countryAbbr") or None,
             "starts": self._to_int(stats_values.get("starts")),
             "cuts_made": self._to_int(stats_values.get("cuts_made")),
             "top_10": self._to_int(stats_values.get("top_10_finishes")),
