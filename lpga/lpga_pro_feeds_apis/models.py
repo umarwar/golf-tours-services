@@ -21,6 +21,7 @@ class TournamentOut(BaseModel):
     status: Optional[str] = None
     winners: Optional[str] = None
     tournament_url: Optional[str] = None
+    tournament_logo: Optional[str] = None
     ticket_url: Optional[str] = None
     course: CourseInfo
 
@@ -45,7 +46,7 @@ class LeaderboardRow(BaseModel):
     strokes: Optional[int] = None
     points: Optional[float] = None
     prize_money: Optional[str] = None
-    country: Optional[str] = None
+    country_flag: Optional[str] = None
     player_url: Optional[str] = None
 
 
@@ -70,6 +71,7 @@ class PlayerListItem(BaseModel):
     rookie_year: Optional[int] = None
     year_joined: Optional[int] = None
     country: Optional[str] = None
+    country_flag: Optional[str] = None
     image_url: Optional[str] = None
 
 
@@ -103,6 +105,7 @@ class PlayerProfile(BaseModel):
     rookie_year: Optional[int] = None
     year_joined: Optional[int] = None
     country: Optional[str] = None
+    country_flag: Optional[str] = None
     starts: Optional[int] = None
     cuts_made: Optional[int] = None
     top_10: Optional[int] = None
@@ -119,9 +122,11 @@ class TicketUrlItem(BaseModel):
     tournament_id: str
     tournament_name: str
     year: Optional[int] = None
+    month: Optional[str] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     ticket_url: Optional[str] = None
+    tournament_logo: Optional[str] = None
 
 
 class TicketUrlResponse(BaseModel):

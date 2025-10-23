@@ -7,7 +7,7 @@ def fetch_players(
     sb: Client, page: int, page_size: int
 ) -> Tuple[List[Dict[str, Any]], Optional[int]]:
     base = sb.table("lpga_players_stats").select(
-        "player_id,first_name,last_name,age,rookie_year,year_joined,country,image_url",
+        "player_id,first_name,last_name,age,rookie_year,year_joined,country,country_flag,image_url",
         count="exact",
     )
 
@@ -27,7 +27,7 @@ def fetch_player_profile(sb: Client, player_id: int) -> Optional[Dict[str, Any]]
     resp = (
         sb.table("lpga_players_stats")
         .select(
-            "player_id,first_name,last_name,age,rookie_year,year_joined,country,starts,cuts_made,top_10,wins,low_round,official_earnings_amount,cme_points_rank,cme_points,image_url"
+            "player_id,first_name,last_name,age,rookie_year,year_joined,country,country_flag,starts,cuts_made,top_10,wins,low_round,official_earnings_amount,cme_points_rank,cme_points,image_url"
         )
         .eq("player_id", player_id)
         .limit(1)

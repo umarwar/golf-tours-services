@@ -66,6 +66,7 @@ async def list_tournaments(
                 status=("COMPLETE" if r.get("is_complete") else "UPCOMING"),
                 winners=r.get("winners"),
                 tournament_url=r.get("tournament_url"),
+                tournament_logo=r.get("tournament_logo"),
                 ticket_url=r.get("ticket_url"),
                 course=CourseInfo(name=r.get("course"), location=r.get("location")),
             )
@@ -105,6 +106,7 @@ async def get_tournament(tournament_id: str):
         status=("COMPLETE" if r.get("is_complete") else "UPCOMING"),
         winners=r.get("winners"),
         tournament_url=r.get("tournament_url"),
+        tournament_logo=r.get("tournament_logo"),
         ticket_url=r.get("ticket_url"),
         course=CourseInfo(name=r.get("course"), location=r.get("location")),
     )
@@ -140,7 +142,7 @@ async def get_leaderboard(
             strokes=r.get("strokes"),
             points=(float(r["points"]) if r.get("points") is not None else None),
             prize_money=r.get("prize_money"),
-            country=r.get("country_abbr"),
+            country_flag=r.get("country_abbr"),
             player_url=r.get("player_url"),
         )
         for r in rows
@@ -190,6 +192,7 @@ async def list_players(
                     int(r["year_joined"]) if r.get("year_joined") is not None else None
                 ),
                 country=r.get("country"),
+                country_flag=r.get("country_flag"),
                 image_url=r.get("image_url"),
             )
         )
@@ -250,6 +253,7 @@ async def get_player_profile(player_id: int):
             int(s["year_joined"]) if s.get("year_joined") is not None else None
         ),
         country=s.get("country"),
+        country_flag=s.get("country_flag"),
         starts=s.get("starts"),
         cuts_made=s.get("cuts_made"),
         top_10=s.get("top_10"),
@@ -285,9 +289,11 @@ async def get_ticket_urls(
                 tournament_id=r.get("tournament_id"),
                 tournament_name=r.get("name", ""),
                 year=(int(r["year"]) if r.get("year") is not None else None),
+                month=r.get("month"),
                 start_date=(r.get("start_date") or None),
                 end_date=(r.get("end_date") or None),
                 ticket_url=r.get("ticket_url"),
+                tournament_logo=r.get("tournament_logo"),
             )
         )
 

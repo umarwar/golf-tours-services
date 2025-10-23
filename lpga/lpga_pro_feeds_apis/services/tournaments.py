@@ -5,7 +5,7 @@ from supabase import Client
 
 SELECT_FIELDS = (
     "tournament_id,tournament_code,name,month,year,date_range,start_date,end_date,"
-    "purse_text,purse_amount,points,is_complete,winners,tournament_url,ticket_url,"
+    "purse_text,purse_amount,points,is_complete,winners,tournament_url,tournament_logo,ticket_url,"
     "course,location"
 )
 
@@ -51,7 +51,9 @@ def fetch_tournament_by_id(sb: Client, tournament_id: str) -> Optional[Dict[str,
     return rows[0] if rows else None
 
 
-TICKET_URL_SELECT_FIELDS = "tournament_id,name,year,start_date,end_date,ticket_url"
+TICKET_URL_SELECT_FIELDS = (
+    "tournament_id,name,year,month,start_date,end_date,ticket_url,tournament_logo"
+)
 
 
 def fetch_upcoming_ticket_urls(

@@ -60,6 +60,7 @@ Response:
       "status": "UPCOMING",
       "winners": "Somi Lee, Jin Hee Im",
       "tournament_url": "https://www.lpga.com/tournaments/caop",
+      "tournament_logo": "https://www.lpga.com/tournaments/caop/logo.png",
       "ticket_url": "https://tickets.example.com",
       "course": {
         "name": "Silverado Resort (North Course)",
@@ -116,7 +117,7 @@ Response:
       "strokes": 269,
       "points": 500.0,
       "prize_money": "$300,000",
-      "country": "USA",
+      "country_flag": "USA",
       "player_url": "https://www.lpga.com/athletes/charley-hull/98215/overview"
     }
   ],
@@ -150,6 +151,7 @@ Response:
       "rookie_year": 2016,
       "year_joined": 2016,
       "country": "United States",
+      "country_flag": "USA",
       "image_url": "https://www.lpga.com/-/media/images/lpga/players/l/lopez/gaby/lopez_gaby_25hs_486x486.jpg"
     }
   ],
@@ -157,7 +159,6 @@ Response:
   "page_size": 20,
   "has_more": true
 }
-```
 
 Example:
 ```bash
@@ -177,6 +178,7 @@ Response:
   "rookie_year": 2016,
   "year_joined": 2016,
   "country": "United States",
+  "country_flag": "USA",
   "starts": 19,
   "cuts_made": 13,
   "top_10": 5,
@@ -203,6 +205,7 @@ Response:
     }
   ]
 }
+```
 ```
 
 Example:
