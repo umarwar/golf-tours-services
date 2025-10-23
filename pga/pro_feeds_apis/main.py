@@ -58,6 +58,7 @@ async def list_tournaments(
                 name=r.get("tournament_name", ""),
                 tournament_name=r.get("tournament_name", ""),
                 year=(int(r["year"]) if r.get("year") is not None else None),
+                month=r.get("month"),
                 start_date=(r.get("start_date") or None),
                 end_date=(r.get("end_date") or None),
                 purse_amount=r.get("purse_amount"),
@@ -66,6 +67,7 @@ async def list_tournaments(
                 previous_winner=r.get("previous_winner"),
                 winner_prize=r.get("winner_prize"),
                 tournament_url=r.get("tournament_url"),
+                tournament_logo=r.get("tournament_logo"),
                 ticket_url=r.get("ticket_url"),
                 course=CourseInfo(
                     name=r.get("course_name"),
@@ -100,6 +102,7 @@ async def get_tournament(tournament_id: str):
         name=r.get("tournament_name", ""),
         tournament_name=r.get("tournament_name", ""),
         year=(int(r["year"]) if r.get("year") is not None else None),
+        month=r.get("month"),
         start_date=(r.get("start_date") or None),
         end_date=(r.get("end_date") or None),
         purse_amount=r.get("purse_amount"),
@@ -108,6 +111,7 @@ async def get_tournament(tournament_id: str):
         previous_winner=r.get("previous_winner"),
         winner_prize=r.get("winner_prize"),
         tournament_url=r.get("tournament_url"),
+        tournament_logo=r.get("tournament_logo"),
         ticket_url=r.get("ticket_url"),
         course=CourseInfo(
             name=r.get("course_name"),
@@ -256,6 +260,7 @@ async def list_players(
                 age=(int(r["age"]) if r.get("age") is not None else None),
                 birthday=r.get("birthday"),
                 country=r.get("country"),
+                country_flag=r.get("country_flag"),
                 residence=r.get("residence"),
                 birth_place=r.get("birth_place"),
                 family=r.get("family"),
@@ -312,6 +317,7 @@ async def get_player_profile(player_id: int):
         age=(int(r["age"]) if r.get("age") is not None else None),
         birthday=r.get("birthday"),
         country=r.get("country"),
+        country_flag=r.get("country_flag"),
         residence=r.get("residence"),
         birth_place=r.get("birth_place"),
         family=r.get("family"),
@@ -342,9 +348,11 @@ async def get_ticket_urls(
                 tournament_id=r.get("tournament_id"),
                 tournament_name=r.get("tournament_name", ""),
                 year=(int(r["year"]) if r.get("year") is not None else None),
+                month=r.get("month"),
                 start_date=(r.get("start_date") or None),
                 end_date=(r.get("end_date") or None),
                 ticket_url=r.get("ticket_url"),
+                tournament_logo=r.get("tournament_logo"),
             )
         )
 

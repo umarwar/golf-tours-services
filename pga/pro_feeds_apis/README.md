@@ -51,6 +51,7 @@ Response:
       "id": "R2025464",
       "name": "Procore Championship",
       "year": 2025,
+      "month": "September",
       "start_date": "2025-09-11",
       "end_date": "2025-09-14",
       "purse_amount": "$6,000,000",
@@ -59,6 +60,7 @@ Response:
       "previous_winner": "Patton Kizzire",
       "winner_prize": "$1,080,000",
       "tournament_url": "https://www.pgatour.com/tournaments/r464",
+      "tournament_logo": "https://res.cloudinary.com/pgatour-prod/d_tournaments:logos:R000.png/tournaments/logos/R554.png",
       "ticket_url": "https://am.ticketmaster.com/pganapa",
       "course": {
         "name": "Silverado Resort (North Course)",
@@ -120,6 +122,7 @@ Response:
       "projected": null,
       "starting": "-",
       "country": "USA",
+      "country_flag": "USA",
       "player_url": "https://www.pgatour.com/player/46046/scottie-scheffler"
     }
   ],
@@ -204,6 +207,7 @@ Response:
       "age": 29,
       "birthday": "June 21, 1996",
       "country": "United States",
+      "country_flag": "USA",
       "residence": "Dallas, Texas",
       "birth_place": "Ridgewood, New Jersey",
       "family": "Wife, Meredith; Bennett",
@@ -238,6 +242,7 @@ Response:
   "age": 29,
   "birthday": "June 21, 1996",
   "country": "United States",
+  "country_flag": "USA",
   "residence": "Dallas, Texas",
   "birth_place": "Ridgewood, New Jersey",
   "family": "Wife, Meredith; Bennett",

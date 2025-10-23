@@ -13,6 +13,7 @@ class TournamentOut(BaseModel):
     id: str
     name: str
     year: Optional[int] = None
+    month: Optional[str] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     purse_amount: Optional[str] = None
@@ -21,6 +22,7 @@ class TournamentOut(BaseModel):
     previous_winner: Optional[str] = None
     winner_prize: Optional[str] = None
     tournament_url: Optional[str] = None
+    tournament_logo: Optional[str] = None
     ticket_url: Optional[str] = None
     course: CourseInfo
 
@@ -48,6 +50,7 @@ class LeaderboardRow(BaseModel):
     projected: Optional[int] = None
     starting: Optional[str] = None
     country: Optional[str] = None
+    country_flag: Optional[str] = None
     player_url: Optional[str] = None
 
 
@@ -126,6 +129,7 @@ class PlayerProfile(BaseModel):
     age: Optional[int] = None
     birthday: Optional[str] = None
     country: Optional[str] = None
+    country_flag: Optional[str] = None
     residence: Optional[str] = None
     birth_place: Optional[str] = None
     family: Optional[str] = None
@@ -144,6 +148,7 @@ class PlayerListItem(BaseModel):
     age: Optional[int] = None
     birthday: Optional[str] = None
     country: Optional[str] = None
+    country_flag: Optional[str] = None
     residence: Optional[str] = None
     birth_place: Optional[str] = None
     family: Optional[str] = None
@@ -163,9 +168,11 @@ class TicketUrlItem(BaseModel):
     tournament_id: str
     tournament_name: str
     year: Optional[int] = None
+    month: Optional[str] = None
     start_date: Optional[str] = None
     end_date: Optional[str] = None
     ticket_url: Optional[str] = None
+    tournament_logo: Optional[str] = None
 
 
 class TicketUrlResponse(BaseModel):

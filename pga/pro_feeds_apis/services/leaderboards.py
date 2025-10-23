@@ -3,7 +3,7 @@ from typing import Any, Dict, List, Optional, Tuple
 from supabase import Client
 
 
-LB_SELECT = "player_id,first_name,last_name,position,total,thru,score,r1,r2,r3,r4,strokes,projected,starting,country,player_url,leaderboard_sort_order"
+LB_SELECT = "player_id,first_name,last_name,position,total,thru,score,r1,r2,r3,r4,strokes,projected,starting,country,country_flag,player_url,leaderboard_sort_order"
 
 
 def fetch_leaderboard_rows(
